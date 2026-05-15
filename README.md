@@ -1,3 +1,16 @@
+## Running the application
+
+Use command-line arguments to pass the CSV source file paths when launching the app:
+
+```bash
+python main.py \
+  --customers-csv data/src_customers.csv \
+  --billing-csv data/src_billing_transactions.csv \
+  --network-csv data/src_network_sessions.csv
+```
+
+This loads the CSV files into PostgreSQL, then runs the pipeline to load data into BigQuery and build the analytics tables.
+
 ### Why `ROW_NUMBER()` Was Used Instead of `SELECT DISTINCT`
 
 `ROW_NUMBER()` was chosen instead of `SELECT DISTINCT` because the requirement was not simply to remove identical rows, but to keep the most recent record for each duplicated `transaction_id`.
